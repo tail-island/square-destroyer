@@ -7,7 +7,14 @@ function readLines (path) {
     const result = []
 
     createInterface(createReadStream(path))
-      .on('line', line => { result.push(line) })
+      .on('line', line => {
+        const trimmedLine = line.trim()
+        if (!trimmedLine) {
+          return
+        }
+
+        result.push(trimmedLine)
+      })
       .on('close', () => { resolve(result) })
   })
 }
@@ -35,7 +42,7 @@ const squares = [...game.getSquares(finalState)]
 console.error(game.toString(initialState))
 console.error(game.toString(finalState))
 for (const [left, top, squareSize] of squares.slice(0, 10)) {
-  console.error(`${left}\t${top}\t${squareSize}`)
+  console.error(`left: ${left}, top: ${top}, square size: ${squareSize}`)
 }
 
 console.log(`${squares.length}\t${removingMatchstickIndices.length}`)
