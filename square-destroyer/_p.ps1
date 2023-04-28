@@ -1,1 +1,1 @@
-npm run --silent play sample-question.txt sample-answer.txt
+npm --silent run play sample-question.txt sample-answer.txt

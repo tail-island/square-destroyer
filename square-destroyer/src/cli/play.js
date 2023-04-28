@@ -9,6 +9,7 @@ function readLines (path) {
     createInterface(createReadStream(path))
       .on('line', line => {
         const trimmedLine = line.trim()
+
         if (!trimmedLine) {
           return
         }

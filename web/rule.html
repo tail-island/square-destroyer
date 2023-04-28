@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="ja" xml:lang="ja">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>正方形を壊し尽くせ！ - 課題とコンクールの進め方</title>
+  <style>
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+    .display.math{display: block; text-align: center; margin: 0.5rem auto;}
+  </style>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/github-markdown-css/5.1.0/github-markdown.min.css" />
+  <meta name="description" content="文系の文系による文系のための機械学習ガイド。">
+  <meta name="keywords"    content="機械学習,Python">
+
+  <style>
+  	.markdown-body {
+  		box-sizing: border-box;
+  		min-width: 200px;
+  		max-width: 980px;
+  		margin: 0 auto;
+  		padding: 45px;
+  	}
+
+  	@media (max-width: 767px) {
+  		.markdown-body {
+  			padding: 15px;
+  		}
+  	}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<article class="markdown-body">
+<h1 id="正方形を壊し尽くせ">正方形を壊し尽くせ！</h1>
+<p>マッチ棒が格子状に並んでいます。できるだけ多くの正方形を、できるだけ少ない数のマッチ棒の除去で破壊してください。</p>
+<p><img src="./images/square-destroyer.jpg"
+alt="正方形を壊し尽くせ！" /></p>
+<h2 id="ルール">ルール</h2>
+<p>格子の中には多数の正方形が含まれています。</p>
+<p><img src="./images/squares.png" alt="格子の中の正方形" /></p>
+<p>あなたのプログラムに与えられる問題では、格子のサイズが様々で、マッチ棒がいくつか取り除かれています。</p>
+<p><img src="./images/question-sample.jpg" alt="問題例" /></p>
+<p>しかし、まだ正方形が残っています。</p>
+<p><img src="" alt="問題例に残っている正方形" /></p>
+<p>マッチ棒を取り除いて、できるだけ多くの正方形を壊してください。</p>
+<p><img src="./images/destroy.jpg"
+alt="問題例に残っている正方形を一つ壊す" /></p>
+<p>壊した正方形の数が多いほうが良い解答で、壊した正方形の数が同じであれば取り除いたマッチ棒の本数が少ない方が良い解答です。</p>
+<p><img src="./images/answers.png" alt="解答の良さ" /></p>
+<p>他の参加者が作成する様々な問題に対して、できるだけ良い解答を出力するプログラムを作成してください。</p>
+<h2 id="入力データ">入力データ</h2>
+<p>以下に、入力データの具体例を示します（<code>#</code>以降はコメントです。入力データに含めないようにしてください）。</p>
+<pre><code>3       # 格子の大きさ（この例では3なので、3×3の格子になります）
+5       # 最初から取り除かれているマッチ棒のインデックス
+15      # 同上
+19      # 同上</code></pre>
+<p>マッチ棒のインデックスは、以下の順になります。</p>
+<p><img src="./images/indices.jpg" alt="マッチ棒のインデックス" /></p>
+<ul>
+<li>格子の大きさは、1以上128以下としてください。</li>
+<li>格子の大きさがnの場合、マッチ棒のインデックスは0以上2×(n×(n＋1))未満としてください。</li>
+<li>取り除くマッチ棒のインデックスが重複しないようにしてください。</li>
+<li>取り除くマッチ棒のインデックスの件数は、許された範囲内の値で重複がないのであれば、何本でも（0本でも）構いません。</li>
+</ul>
+<h2 id="出力データ">出力データ</h2>
+<p>以下に、出力データの具体例を示します（<code>#</code>以降はコメントです。入力データに含めないようにしてください）。</p>
+<pre><code>7       # 最初から取り除かれているマッチ棒のインデックス
+12      # 同上
+14      # 同上</code></pre>
+<p>マッチ棒のインデックスは、入力データと同じです。</p>
+<p>入力データで既に取り除かれているマッチ棒のインデックスが含まれていても、入力データの格子のサイズから許されない値でも構いません。しかし、そのような実際にはマッチ棒が取り除かれない場合でも、取り除いたマッチ棒としてカウントします。</p>
+<h2 id="作成していただくプログラム">作成していただくプログラム</h2>
+<p>作成していただくプログラムは、以下の制限を満たしてください。</p>
+<ul>
+<li>Windows 10 64bitで動作可能にしてください</li>
+<li>有償のライブラリやプログラミング言語は使用しないでください</li>
+<li>プログラムの起動〜終了の時間を15秒以内にしてください</li>
+</ul>
+<h2
+id="コマンドラインでのスコアの確認">コマンドラインでのスコアの確認</h2>
+<p>作成したプログラムの出力が正しいかをWebブラウザで確認するのが面倒な場合は、<a
+href="./square-destroyer.zip">課題確認（ソース・コード）</a>を使用してみてください。</p>
+<p>使用したプログラミング言語はJavaScriptで、<a
+href="https://nodejs.org/ja">node.js</a>上で動作します。<a
+href="https://nodejs.org/ja">node.js</a>をインストール（18.16.0
+LTSで動作検証しています）し、<a
+href="./square-destroyer.zip">課題確認（ソース・コード）</a>を適当なフォルダに展開し、コマンドプロンプト上でそのフォルダに移動し、npm
+installしてください。</p>
+<p>コマンドプロンプトで<code>npm --silent run play 問題ファイル 解答ファイル</code>を実行すれば、標準出力に<code>残っている正方形の数\t取り除いたマッチ棒の数</code>が出力されます。</p>
+<p><img src="" alt="CLI" /></p>
+<h2 id="評価方法">評価方法</h2>
+<p>本課題では、問題単位に以下で順位を付けます。</p>
+<ol type="1">
+<li>残っている正方形の数が少ない順</li>
+<li>残っている正方形の数が同じ場合は、取り除いたマッチ棒の数が少ない順</li>
+</ol>
+<p>順位に応じて、以下でポイントを配分します。</p>
+<table>
+<thead>
+<tr class="header">
+<th style="text-align: center;">1位</th>
+<th style="text-align: center;">2位</th>
+<th style="text-align: center;">3位</th>
+<th style="text-align: center;">4位</th>
+<th style="text-align: center;">5位</th>
+<th style="text-align: center;">6位</th>
+<th style="text-align: center;">7位</th>
+<th style="text-align: center;">8位</th>
+<th style="text-align: center;">9位</th>
+<th style="text-align: center;">10位</th>
+<th style="text-align: center;">11位</th>
+<th style="text-align: center;">12位</th>
+<th style="text-align: center;">13位</th>
+<th style="text-align: center;">14位</th>
+<th style="text-align: center;">15位以下</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;">25</td>
+<td style="text-align: center;">20</td>
+<td style="text-align: center;">16</td>
+<td style="text-align: center;">13</td>
+<td style="text-align: center;">11</td>
+<td style="text-align: center;">10</td>
+<td style="text-align: center;">9</td>
+<td style="text-align: center;">8</td>
+<td style="text-align: center;">7</td>
+<td style="text-align: center;">6</td>
+<td style="text-align: center;">5</td>
+<td style="text-align: center;">4</td>
+<td style="text-align: center;">3</td>
+<td style="text-align: center;">2</td>
+<td style="text-align: center;">1</td>
+</tr>
+</tbody>
+</table>
+<p>順位は、自分よりも良い解答を出した参加者の数＋1です。1位が2人いる場合、次の参加者は3位になります。</p>
+<p>同じ順位の参加者が複数いる場合は、ポイントを等分します。1位が2人なら(25＋20)÷2、3人なら(25＋20＋16)÷3になります。</p>
+<p>出力データのフォーマットにエラーがあったりプログラムの起動〜終了の時間が15秒を超えたりした場合は失格となり、その問題のポイントは0になります。</p>
+<p>獲得したポイントの合計で最終順位を決定します。獲得したポイントの合計が同じ参加者が複数いる場合は、総実行時間が少ない参加者を上位とします。</p>
+<h2 id="試合形式">試合形式</h2>
+<p>問題を解くプログラムと問題をセットにして提出してください。参加者それぞれのプログラムが、自身を含む参加者全員の問題を解きます。</p>
+<p>問題が提出されなかった場合、フォーマットにエラーがあった場合、他の参加者と同一の問題が提出された場合、その他運営に何らかの支障があるとオブザーバーが判断した場合は、これらに該当する問題と同数の問題をオブザーバーが作成し、該当する問題のかわりに出題します。また、参加者の人数が少ない場合も、オブザーバーが問題を作成して追加します。</p>
+<h2 id="進行手順">進行手順</h2>
+<p>本コンクールでは、練習試合と公式試合を、それぞれ1回実施します。</p>
+<p>練習試合は提出形式やプログラムの動作を参加者が確認するために実施するもので、選考には影響しません。練習試合の結果は、実行時間とプログラムの出力（失格時は失格理由）、問題毎の順位をプログラムの作成者にのみ公開します。また、参考のために、各問題における1位の結果を参加者全員に公開します。</p>
+<p>各試合は、以下のPCで、ネットワークから遮断した状態で実施します。</p>
+<ul>
+<li>OS: Windows 11 Professional 64bit</li>
+<li>CPU: Interl Core i7-1165G7</li>
+<li>メモリ: 32GB</li>
+</ul>
+<h2 id="コミュニケーション">コミュニケーション</h2>
+<p>プログラミング・コンクールの目的は「NULグループにおける開発力の向上および、参加者どうしの相互啓発を図る」です。</p>
+<p>課題のポイントを理解し、ポイントに沿う形で自身の作品の優秀さを主張してください。プログラミング・コンクールに参加する人と作品に敬意を払い、理解しあい、互いの優秀なスキルを共有してください。</p>
+<p>参加者全員が「相互啓発を図る」ために、課題についての質問や意見は参加者全員で対応することとします。参加者は以下の事項を守ってください。</p>
+<ol type="1">
+<li>課題についての質問は、後述するTeamsに投稿/回答してください。</li>
+<li>質問や回答に意見のある場合も、Teamsを使用してください。個人宛ての質問や意見は不可とします。</li>
+</ol>
+<h2 id="teams">Teams</h2>
+<p>コミュニケーション媒体としてTeamsに「プロコン参加者サイト」チームを用意しますので、ご活用ください。「◯◯技術についてオブザーバーが解説しろ」とかの投稿でも大丈夫です。ただ、オブザーバーの能力不足で解説できない場合は、申し訳有りません、相互啓発ということで参加者の皆様のご協力をお願いするかもしれませんが。</p>
+<ol type="1">
+<li>事務局が、参加者とオブザーバーをメンバー登録します。メンバーは、課題1と課題2のどちらのチャンネルにも参加することができます。</li>
+<li>各課題の質問や連絡は各課題のチャンネルに投稿してください。</li>
+<li>投稿するとき、「@」を付けてメンションするとメンバーに通知することができます。「@q1」は課題1のメンバー全員に、「@q2」は課題2のメンバー全員にメンションが届きます。</li>
+<li>過去の投稿は遡って確認できます。途中から参加した方は、過去の投稿も確認するようにしてください。</li>
+</ol>
+</article>
+</body>
+</html>
