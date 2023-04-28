@@ -14,7 +14,7 @@
 
 ![問題例](./images/question-sample.jpg)
 
-しかし、まだ正方形が残っています。
+この問題には、まだ正方形が残っています。
 
 ![問題例に残っている正方形](./images/squares-in-question-sample.jpg)
 
